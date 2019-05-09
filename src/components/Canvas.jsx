@@ -63,7 +63,19 @@ class Canvas extends Component {
             this.draw = function() {
                 c.beginPath();
                 c.fillStyle= `green`;
-                c.arc(this.x,this.y,this.rad,0,Math.PI * 2 ,false);
+                // c.arc(this.x,this.y,this.rad,0,Math.PI * 2 ,false);
+                // Create gradient
+                var gradient = c.createLinearGradient(0, 0,  window.innerWidth, 0);
+                gradient.addColorStop("0"," magenta");
+                gradient.addColorStop("0.5", "blue");
+                gradient.addColorStop("1.0", "red");
+                // Fill with gradient
+                c.fillStyle = gradient;
+                // c.font = "30px Georgia";
+                // c.fillText("Deepak", this.x,this.y);
+
+                c.font='30px FontAwesome';
+                c.fillText(`\uF004`,this.x,this.y);
                 c.fill();
             };
             this.update = function() {
@@ -81,7 +93,7 @@ class Canvas extends Component {
        
         var circleArray = [];
         var rectangleArray = [];
-        for(var i= 0; i<100;i++) {
+        for(var i= 0; i<100;i++) {  
             var rad = 20;
             var l = 50;
             var b = 50;
@@ -92,12 +104,11 @@ class Canvas extends Component {
             var dx = (Math.random() - 0.5);
             var dy = (Math.random() - 0.5) ;
            
-            //var circle = new Circle(x,y,dx,dy,rad);
             circleArray.push(new Circle(x,y,dx,dy,rad));
             rectangleArray.push(new Rectangle(rx,ry,dx,dy,l,b))
 
         }
-        console.log(circleArray,rectangleArray );
+       //  console.log(circleArray,rectangleArray );
        function animation(){
          
            requestAnimationFrame(animation);
