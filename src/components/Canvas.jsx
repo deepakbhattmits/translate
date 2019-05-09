@@ -30,6 +30,30 @@ class Canvas extends Component {
         //     c.arc(x,y,25,0,360,false);
         //     c.fill();
         // }
+        function Rectangle (x,y,dx,dy,l,b) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.l = l;
+            this.b = b;
+            this.draw = () => {
+                c.beginPath();
+                c.fillStyle = `purple`;
+                c.fillRect(this.x,this.y,this.l,this.b);
+            }
+            this.update = function() {
+                if(this.x + this.l > window.innerWidth || this.x - this.l < 0) {
+                    this.dx = -this.dx;
+                }
+                if(this.y + this.l > window.innerHeight || this.y - this.l < 0) {
+                    this.dy = -this.dy;
+                }
+                this.x += this.dx;
+                this.y += this.dy;
+                this.draw();
+            }
+        }
         function Circle(x,y,dx,dy,rad) {
             this.x = x;
             this.y = y;
@@ -56,17 +80,24 @@ class Canvas extends Component {
         }
        
         var circleArray = [];
+        var rectangleArray = [];
         for(var i= 0; i<100;i++) {
             var rad = 20;
+            var l = 50;
+            var b = 50;
             var x = Math.random() * ( window.innerWidth - rad * 2 ) + rad;
             var y = Math.random() * ( window.innerHeight - rad * 2 ) + rad ;
+            var rx = Math.random() * ( window.innerWidth - b  )  ;
+            var ry = Math.random() * ( window.innerHeight - l  );
             var dx = (Math.random() - 0.5);
             var dy = (Math.random() - 0.5) ;
            
             //var circle = new Circle(x,y,dx,dy,rad);
             circleArray.push(new Circle(x,y,dx,dy,rad));
+            rectangleArray.push(new Rectangle(rx,ry,dx,dy,l,b))
+
         }
-        console.log(circleArray);
+        console.log(circleArray,rectangleArray );
        function animation(){
          
            requestAnimationFrame(animation);
@@ -74,7 +105,9 @@ class Canvas extends Component {
             for(let i= 0; i < circleArray.length;i++){
                     circleArray[i].update(); 
             }
-            // circle.update();
+            for(let j = 0;j < rectangleArray.length; j++) {
+                rectangleArray[j].update();
+            }
        }
        animation();
     }
