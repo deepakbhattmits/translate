@@ -63,19 +63,19 @@ class Canvas extends Component {
             this.draw = function() {
                 c.beginPath();
                 c.fillStyle= `green`;
-                // c.arc(this.x,this.y,this.rad,0,Math.PI * 2 ,false);
-                // Create gradient
-                var gradient = c.createLinearGradient(0, 0,  window.innerWidth, 0);
-                gradient.addColorStop("0"," magenta");
-                gradient.addColorStop("0.5", "blue");
-                gradient.addColorStop("1.0", "red");
-                // Fill with gradient
-                c.fillStyle = gradient;
+                 c.arc(this.x,this.y,this.rad,0,Math.PI * 2 ,false);
+                // //  Create gradient
+                // var gradient = c.createLinearGradient(0, 0,  window.innerWidth, 0);
+                // gradient.addColorStop("0"," magenta");
+                // gradient.addColorStop("0.5", "blue");
+                // gradient.addColorStop("1.0", "red");
+                // // Fill with gradient
+                // c.fillStyle = gradient;
                 // c.font = "30px Georgia";
                 // c.fillText("Deepak", this.x,this.y);
 
-                c.font='30px FontAwesome';
-                c.fillText(`\uF004`,this.x,this.y);
+                c.font='40px FontAwesome';
+                c.fillText(`\uF118`,this.x + 20,this.y + 15);
                 c.fill();
             };
             this.update = function() {
